@@ -46,7 +46,7 @@ library(affydata)
 data(Dilution)
 
 ## one CEL to go faster
-afbatch <- Dilution[1]
+afbatch <- Dilution[, 1]
 params <- find.params.pdnn(afbatch, hgu95av2.pdnn.params, optim.method =
 FALSE, give.warnings=FALSE)
 

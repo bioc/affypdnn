@@ -3,13 +3,23 @@ find.params.pdnn <- function(abatch, params.chiptype, optim.method="BFGS", verbo
   if (verbose)
     cat("initializing data structure...")
 
+  ## the following is a bit hard to follow (at least for the author of the
+  ## code 8 months later ;) )... comments were added...
+
+  ## names of probe sets (sorted)
   names.abatch <- sort(geneNames(abatch))
+  ## number of probes in probes sets (set to zero at start)
   n.probes <- rep(0, length(names.abatch))
+  ## number of CEL files in the abatch
   n.cel <- length(sampleNames(abatch))
   ##names.pdnnparams <- sort(ls(params.chiptype$params.gene))
+  ## index for the names
   names.i <- rep(as.integer(NA), length(names.abatch))
+  ## list of parameters 'lambda' (one list element for each probe set)  
   lambda <- vector("list", length=length(names.abatch))
+  ## vector of parameters 'Fs' (one for each chip)
   Fs <- rep(as.numeric(NA), length=n.cel)
+  ## vector of parameters 'S.lambda.E' (one for each probe set)
   S.lambda.E <- vector("numeric", length=length(names.abatch)) ## \sum \frac{\lambda_{ij}} {1+exp(E_{ij})}
   
   ##K1top <- vector("numeric", length=length(names.abatch))
@@ -156,7 +166,9 @@ find.params.pdnn <- function(abatch, params.chiptype, optim.method="BFGS", verbo
           succes<-succes+1
           failed<-0
           DeltaB<-DB; DeltaN<-DN
-          Fit<-Fnew; B<-Bnew; N<-Nnew
+          Fit<-Fnew;
+          B<-Bnew;
+          N<-Nnew
           if(succes>1){
             increase<-runif(1,1,1.5)
             DeltaB<-DeltaB*increase

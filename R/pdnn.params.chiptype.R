@@ -32,6 +32,8 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
   if (!is.null(probes.data.frame))
     probe.tab <- probes.data.frame
   ##
+
+  xy.offset <- getOption("BioC")$affy$xy.offset
   
   i.seq <- match(seq.name, names(probe.tab))
   i.x <- match(x.name, names(probe.tab))
@@ -54,8 +56,8 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
       cat("done.\n")
   }
   
-  probe.x <- probe.tab[[i.x]] + 1
-  probe.y <- probe.tab[[i.y]] + 1
+  probe.x <- probe.tab[[i.x]] + xy.offset
+  probe.y <- probe.tab[[i.y]] + xy.offset
   affy.id <- probe.tab[[i.affyid]]
   probe.seq <- tolower(as.character(probe.tab[[i.seq]]))
   

@@ -1,4 +1,4 @@
-expressopdnn <-  function(afbatch,
+expressopdnn <-  function(abatch,
                           ## --
                           bg.correct=FALSE,
                           bgcorrect.method = NULL,
@@ -17,7 +17,7 @@ expressopdnn <-  function(afbatch,
                           eset.normalize = TRUE,
                           scale.to = 500,
                           verbose = TRUE,
-                     widget = FALSE
+                          widget = FALSE
                      ) {
 
   if (widget) {
@@ -26,7 +26,7 @@ expressopdnn <-  function(afbatch,
     widget <- FALSE
   }
 
-  nchips <- length(afbatch)
+  nchips <- length(abatch)
   
 ###background stuff must be added before normalization!
   
@@ -46,7 +46,7 @@ expressopdnn <-  function(afbatch,
   if ((normalize) & (is.null(normalize.method))) {
     if (widget) {
       ##DEBUG: move what's below to 'pwidget.selector'
-      n.methods <- normalize.methods(afbatch)
+      n.methods <- normalize.methods(abatch)
       normalize.method <- pwidget.selector(n.methods,
                                            title = "Method for normalization")
       ##choices.help = paste("normalize", n.methods,  sep="."))##took this out cause netscape popping up was annoying me
@@ -54,7 +54,7 @@ expressopdnn <-  function(afbatch,
       rm(n.methods)
     } else {
       stop(paste("normalization method missing. Try one of:",
-                 normalize.methods(afbatch), sep="\n"))
+                 normalize.methods(abatch), sep="\n"))
     }
   }
 
@@ -90,7 +90,7 @@ expressopdnn <-  function(afbatch,
     if (verbose)
       cat("background correcting...")
     
-    afbatch <- do.call("bg.correct", c(alist(afbatch, method=bgcorrect.method),
+    abatch <- do.call("bg.correct", c(alist(abatch, method=bgcorrect.method),
                                        bgcorrect.param))
     
     if (verbose)
@@ -104,8 +104,8 @@ expressopdnn <-  function(afbatch,
     if (verbose)
       cat("normalizing...")
     
-    afbatch <- do.call("normalize",
-                       c(alist(afbatch, normalize.method), normalize.param))
+    abatch <- do.call("normalize",
+                      c(alist(abatch, normalize.method), normalize.param))
     
     if (verbose)
       cat("done.\n")
@@ -114,7 +114,7 @@ expressopdnn <-  function(afbatch,
   ## chip-type specific parameters
   if (is.null(params.chiptype)) {
     ## try to get it from the pack
-    namebase <- cleancdfname(afbatch@cdfName) 
+    namebase <- cleancdfname(abatch@cdfName) 
     dataname <- paste(substr(namebase, 1,  nchar(namebase) - 3), ".pdnn.params", sep="")
     if(! dataname %in% do.call("data", list(package="affypdnn"))$results[, 3])
       stop("params.chiptype missing !")
@@ -122,9 +122,9 @@ expressopdnn <-  function(afbatch,
     assign("params.chiptype", get(dataname))
   }
   
-  params <- find.params.pdnn(afbatch, params.chiptype)
+  params <- find.params.pdnn(abatch, params.chiptype)
   
-  eset <- computeExprSet(afbatch, pmcorrect.method=pmcorrect.method,
+  eset <- computeExprSet(abatch, pmcorrect.method=pmcorrect.method,
                          summary.method="pdnn",
                          ids=summary.subset,
                          pmcorrect.param = list(params, params.chiptype=params.chiptype, callingFromExpresso=TRUE),

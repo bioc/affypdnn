@@ -9,7 +9,7 @@
 }
 \usage{
 pdnn.scalevalue.exprSet(eset, scale.to=500)
-expressopdnn(afbatch,
+expressopdnn(abatch,
       # background correction
              bg.correct = FALSE,
              bgcorrect.method = NULL,
@@ -34,7 +34,7 @@ expressopdnn(afbatch,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{afbatch}{object of \code{\link[affy]{AffyBatch-class}}}
+  \item{abatch}{object of \code{\link[affy]{AffyBatch-class}}}
   \item{bg.correct}{a boolean to express whether background correction
     is wanted or not.}
   \item{bgcorrect.method}{the name of the background adjustment method}
@@ -92,7 +92,7 @@ library(affydata)
 data(Dilution)
 
 ## one CEL to go faster
-afbatch <- Dilution[1]
+afbatch <- Dilution[, 1]
 
 ## Take only few IDs (the 10 first)
 ids <- ls(getCdfInfo(afbatch))[1:10]
