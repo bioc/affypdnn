@@ -6,5 +6,4 @@ Maintainer: Laurent <laurent@cbs.dtu.dk>
 Depends: R (>= 1.9.0), Biobase (>= 1.4.4), affy, affydata, hgu95av2probe
 Description: The package contains functions to perform the PDNN method described by Li Zhang et al. 
 License: LGPL
-ReleaseLevel: devel
 
