@@ -39,8 +39,9 @@ find.params.pdnn(abatch, params.chiptype, optim.method = FALSE, verbose = TRUE, 
 \examples{
 ## load a chip-specific parameter file
 ## (as returned by the function pdnn.params.chiptype)
-
 data(hgu95av2.pdnn.params)
+
+## load experimental data
 library(affydata)
 data(Dilution)
 
