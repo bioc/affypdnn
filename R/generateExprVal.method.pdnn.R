@@ -126,7 +126,7 @@ generateExprVal.method.pdnn <- function(probes, params) {
   expr.se <- rep(as.numeric(NA), ncol(probes))
   
   for (cel.i in seq(1, ncol(probes), length=ncol(probes)))
-    expr.val[cel.i] <- sum((Ntop / lambda[[gene.i]][, cel.i])[ok[, cel.i]]) / sum((1/Sg.gene / lambda[[gene.i]][, cel.i])[ok])
+    expr.val[cel.i] <- sum((Ntop / lambda[[gene.i]][, cel.i])[ok[, cel.i]]) / sum((1/Sg.gene / lambda[[gene.i]][, cel.i])[ok[, cel.i]])
        
   return(list(exprs=expr.val, se.exprs=expr.se))
 }
