@@ -97,7 +97,7 @@ afbatch <- Dilution[1]
 ## Take only few IDs (the 10 first)
 ids <- ls(getCdfInfo(afbatch))[1:10]
 eset <- expressopdnn(afbatch, bg.correct=FALSE,
-                     normalize.method="qspline",
+                     normalize=FALSE,
                      summary.subset=ids) 
 
 }
