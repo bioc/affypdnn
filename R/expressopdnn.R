@@ -11,7 +11,7 @@ expressopdnn <-  function(abatch,
                           pmcorrect.method = c("pdnn", "pdnnpredict"),
                           ##pmcorrect.param = list(),
                           ## --
-                          params.chiptype = NULL,
+                          findparams.param = list(),
                           summary.subset = NULL,
                           ## ---
                           eset.normalize = TRUE,
@@ -112,6 +112,7 @@ expressopdnn <-  function(abatch,
   }
 
   ## chip-type specific parameters
+  params.chiptype <- findparams.param$params.chiptype
   if (is.null(params.chiptype)) {
     ## try to get it from the pack
     namebase <- cleancdfname(abatch@cdfName) 
@@ -121,8 +122,9 @@ expressopdnn <-  function(abatch,
     do.call("data", list(dataname, package="affypdnn"))
     assign("params.chiptype", get(dataname))
   }
-  
-  params <- find.params.pdnn(abatch, params.chiptype)
+  findparams.param$params.chiptype <- params.chiptype
+  params <- do.call("find.params.pdnn",
+                    c(alist(abatch), findparams.param))
   
   eset <- computeExprSet(abatch, pmcorrect.method=pmcorrect.method,
                          summary.method="pdnn",

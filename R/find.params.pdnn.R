@@ -1,6 +1,17 @@
-find.params.pdnn <- function(abatch, params.chiptype, optim.method="BFGS", verbose=TRUE, give.warnings=TRUE) {
+find.params.pdnn <- function(abatch, params.chiptype=NULL, optim.method="BFGS", verbose=TRUE, give.warnings=TRUE) {
 
-  if (verbose)
+
+    ## chip-type specific parameters
+  if (is.null(params.chiptype)) {
+    ## try to get it from the pack
+    namebase <- cleancdfname(abatch@cdfName) 
+    dataname <- paste(substr(namebase, 1,  nchar(namebase) - 3), ".pdnn.params", sep="")
+    if(! dataname %in% do.call("data", list(package="affypdnn"))$results[, 3])
+      stop("params.chiptype missing !")
+    do.call("data", list(dataname, package="affypdnn"))
+    assign("params.chiptype", get(dataname))
+  }
+    if (verbose)
     cat("initializing data structure...")
 
   ## the following is a bit hard to follow (at least for the author of the
@@ -34,7 +45,7 @@ find.params.pdnn <- function(abatch, params.chiptype, optim.method="BFGS", verbo
     gene <- names.abatch[gene.i]
     if(! exists(gene, envir=params.chiptype$params.gene)) {
       if (give.warnings) {
-        warning(paste("The gene", gene, "could not be found in the parameter files (possible entanglement with cdfenvs) !"))
+        warning(paste("The probeset", gene, "could not be found in the parameters (possible entanglement with cdfenvs, or missing probe sequence) !"))
       }
       n.probes[gene.i] <- 0
       names.abatch[gene.i] <- NA

@@ -22,7 +22,7 @@ expressopdnn(abatch,
               pmcorrect.method = c("pdnn", "pdnnpredict"),
 %              pmcorrect.param = list(),
       # pdnn
-             params.chiptype = NULL,          
+             findparams.param = list(),          
       # expression values
              summary.subset = NULL,
       # PDNN expression values scaling
@@ -49,9 +49,7 @@ expressopdnn(abatch,
      two choices here, default to 'pdnn').}
 %   \item{pmcorrect.param}{a list of parameters for pmcorrect.method (if
 %     needed/wanted)}
-  \item{params.chiptype}{An object with chip type specific
-    parameters. If \code{NULL}, the parameter files included in the
-    package will be used whenever possible...}
+  \item{findparams.param}{a list of parameters to be passed to \code{find.params.pdnn}}
   \item{eset.normalize}{is any normalization step on expression values
     to be performed}
   \item{scale.to}{a value to scale against.}
@@ -88,8 +86,12 @@ expressopdnn(abatch,
 \seealso{ \code{\link[affy]{expresso} and \code{\link[affy]{computeExprVal.method.pdnn}}}}
 \examples{
 
+## load pre-computed parameters
+data(hgu95av2.pdnn.params)
+
 library(affydata)
 data(Dilution)
+
 
 ## one CEL to go faster
 afbatch <- Dilution[, 1]
@@ -98,6 +100,8 @@ afbatch <- Dilution[, 1]
 ids <- ls(getCdfInfo(afbatch))[1:10]
 eset <- expressopdnn(afbatch, bg.correct=FALSE,
                      normalize=FALSE,
+                     findparams.param=list(params.chiptype=hgu95av2.pdnn.params,
+                                           give.warnings=FALSE),
                      summary.subset=ids) 
 
 }

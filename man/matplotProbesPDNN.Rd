@@ -8,9 +8,9 @@
 matplotProbesPDNN(x, type="l", ...)
 }
 \arguments{
-  \item{x}{ a matrix (and attributes) as return by \code{pmcorrect.pdnn}
+  \item{x}{ a matrix (and attributes) as returned by \code{pmcorrect.pdnn}
     or \code{pmcorrect.pdnnpredict}. }
-  \item{type}{type of plot (same as in \code{matplot}}
+  \item{type}{type of plot (same as in \code{matplot})}
   \item{\dots}{ optional arguments to be passed to \code{matplot} }
 }
 \details{
@@ -23,6 +23,6 @@ matplotProbesPDNN(x, type="l", ...)
 }
 \seealso{\code{\link{pmcorrect.pdnn}} and \code{\link{pmcorrect.pdnnpredict}}}
 \examples{
-# to appear...
+# see 'pmcorrect.pdnn'
 }
 \keyword{ hplot }

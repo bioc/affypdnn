@@ -50,7 +50,7 @@ library(affydata)
 data(Dilution)
 
 ## only one CEL to go faster
-abatch <- Dilution[1]
+abatch <- Dilution[, 1]
 
 ## get the chip specific parameters
 params <- find.params.pdnn(abatch, hgu95av2.pdnn.params)

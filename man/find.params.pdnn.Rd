@@ -24,6 +24,8 @@ find.params.pdnn(abatch, params.chiptype, optim.method = "BFGS", verbose = TRUE,
   This function fits PDNN parameters that are specific to experimental
   values. The parameters common to all the chips of a certain type
   are returned by the function \code{\link{pdnn.params.chiptype}}.
+  If \code{NULL}, the parameter files included in the
+  package will be used whenever possible...
 }
 \value{
   A list of
