@@ -11,7 +11,7 @@
 pdnn.scalevalue.exprSet(eset, scale.to=500)
 expressopdnn(afbatch,
       # background correction
-             bg.correct = TRUE,
+             bg.correct = FALSE,
              bgcorrect.method = NULL,
              bgcorrect.param = list(),
       # normalize
@@ -82,7 +82,7 @@ expressopdnn(afbatch,
   to \code{FALSE}).
 }
 \value{
-  An object of class \code{\link[Biobase]{exprsSet}}, with an attribute
+  An object of \code{\link[Biobase]{exprsSet-class}}, with an attribute
   \code{pps.warnings} as returned by the method \code{\link[affy]{computeExprSet}}.
 }
 \seealso{ \code{\link[affy]{expresso} and \code{\link[affy]{computeExprVal.method.pdnn}}}}

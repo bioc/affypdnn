@@ -48,9 +48,11 @@ pdnn.params.chiptype(energy.param.file, probes.file = NULL, probes.pack= NULL,
   this function.}
 \seealso{ \code{\link{find.params.pdnn}} }
 \examples{
-energy.file <- system.file("exampleData", "pdnn-energy-parameter_hg-u95av2.txt", package="affypdnn")
+if (interactive()) {
+  energy.file <- system.file("exampleData", "pdnn-energy-parameter_hg-u95av2.txt", package="affypdnn")
 
-params.chiptype <- pdnn.params.chiptype(energy.file, probes.pack="hgu95av2probe")
+  params.chiptype <- pdnn.params.chiptype(energy.file, probes.pack="hgu95av2probe")
+}
 
 }
 \keyword{ manip }

@@ -147,9 +147,18 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
   params.chiptype$gene.name <- vector("character", length=length(S.index))
   
   params.gene <- params.chiptype$params.gene
+
+  if (verbose) {
+    pbt <- new("ProgressBarText", length(S.index), barsteps = as.integer(20))
+    open(pbt)
+  }
   
   ## FIXME:
   for (gene.i in seq(along=S.index)) {
+
+    if (verbose)
+      update(pbt)
+    
     gene <- names(S.index)[gene.i]
     gene.S.index <- S.index[[gene.i]]
     sequences.in.ppset <- probe.seq[gene.S.index]
@@ -165,6 +174,9 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
     params.chiptype$gene.xy[[gene.i]] <- cbind(probe.x[gene.S.index], probe.y[gene.S.index])
     params.chiptype$gene.name[[gene.i]] <- gene
   }
+  
+  if (verbose)
+    close(pbt)
   
   return(params.chiptype)
   

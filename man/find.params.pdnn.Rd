@@ -7,14 +7,14 @@
   AffyBatch object.
 }
 \usage{
-find.params.pdnn(abatch, params.chiptype, optim.method = FALSE, verbose = TRUE, give.warnings=TRUE)
+find.params.pdnn(abatch, params.chiptype, optim.method = "BFGS", verbose = TRUE, give.warnings=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{abatch}{ an instance of \code{\link[affy]{Affybatch-class}}. }
   \item{params.chiptype}{ chip-type specific parameters (see details)}
   \item{optim.method}{method for the optimization function
-    \code{\link{optim}}. When \code{FALSE}, a steepest-method of our own
+    \code{\link{optim}}. When \code{FALSE}, a steepest-descent method of our own
   is used.}
   \item{verbose}{ verbosity (\code{TRUE} or \code{FALSE}) }
   \item{give.warnings}{ report probeset IDs in the \code{abatch} that could not be found in
@@ -47,7 +47,8 @@ data(Dilution)
 
 ## one CEL to go faster
 afbatch <- Dilution[1]
-params <- find.params.pdnn(afbatch, hgu95av2.pdnn.params, give.warnings=FALSE)
+params <- find.params.pdnn(afbatch, hgu95av2.pdnn.params, optim.method =
+FALSE, give.warnings=FALSE)
 
 }
 \keyword{ manip }
