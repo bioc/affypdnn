@@ -1,5 +1,5 @@
 Package: affypdnn
-Version: 0.3.0
+Version: 0.3-0
 Title: Probe Dependant Nearest Neighbours for the affy package
 Author: H. Bjorn Nielsen and Laurent Gautier (Many thanks to Li Zhang early communications about the existence of the PDNN program and related publications).
 Maintainer: Laurent <laurent@cbs.dtu.dk>

@@ -46,7 +46,7 @@ pdnn.params.chiptype(energy.param.file, probes.file = NULL, probes.pack= NULL,
 \warning{ The X and Y positions in the \code{data.frame} are expected to be
   original ones in the Affymetrix files (starting at zero. They are offset by one within
   this function.}
-\seealso{ \code{\link{chiptype.pdnn.params}} and \code{\link{find.params.pdnn}} }
+\seealso{ \code{\link{find.params.pdnn}} }
 \examples{
 energy.file <- system.file("exampleData", "pdnn-energy-parameter_hg-u95av2.txt", package="affypdnn")
 

@@ -57,7 +57,7 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
   probe.x <- probe.tab[[i.x]] + 1
   probe.y <- probe.tab[[i.y]] + 1
   affy.id <- probe.tab[[i.affyid]]
-  probe.seq <- as.character(probe.tab[[i.seq]])
+  probe.seq <- tolower(as.character(probe.tab[[i.seq]]))
   
   if(verbose)
     cat("Calculating chip type specific parameters, (may take some time)...\n")
@@ -109,19 +109,23 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
 
     ENv <-EGv <-vector(length = length(oligo))
 
+    increment <- as.integer(1)
     ## loop across the oligos
     for (g in 1:length(oligo)){
       
       EG <- EN <- 0
 
       ## walk along the sequence
-      for (k in 1:(nchar(oligo[g])-1)) {
+      for (k in seq(1, nchar(oligo[g])-1)) {
 
         ## FIXME: build hashtables for Eg and En
-        di.nucl <- tolower(substr(oligo[g], k, k+1))
+        ##di.nucl <- substr(oligo[g], k, k+1)
+        di.nucl <- .Internal(substr(oligo[g], k, k+increment))
         ## FIXME cast necessary ?
-        EG <- as.numeric(EG + Wg[k] * get(di.nucl, envir = Eg))
-        EN <- as.numeric(EN + Wn[k] * get(di.nucl, envir = En))
+        ##EG <- as.numeric(EG + Wg[k] * get(di.nucl, envir = Eg))
+        ##EN <- as.numeric(EN + Wn[k] * get(di.nucl, envir = En))
+        EG <- EG + Wg[k] * get(di.nucl, envir = Eg)
+        EN <- EN + Wn[k] * get(di.nucl, envir = En)
         
       }
       
