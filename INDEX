@@ -1,0 +1,10 @@
+expressopdnn            Position Dependant Nearest Neighbors model for
+                        affy
+find.params.pdnn        A function to find the experiment specific
+                        PDNN parameters
+generateExprVal.method.pdnn
+                        Compute PM correction and summary expression
+                        value
+matplotProbesPDNN       Plot the PDNN computed probe intensities
+pdnn.params.chiptype    A function to fit PDNN parameters
+transform.ProbeSet      A function to tranform a ProbeSet
