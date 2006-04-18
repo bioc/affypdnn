@@ -43,7 +43,7 @@ pdnn.params.chiptype(energy.param.file, probes.file = NULL, probes.pack= NULL,
   \item{params.gene}{environment. One entry per gene, each entry is
     is a list of elements Sg, Sn, xy  and gene.i}
 }
-\warning{ The X and Y positions in the \code{data.frame} are expected to be
+\section{warning}{ The X and Y positions in the \code{data.frame} are expected to be
   original ones in the Affymetrix files (starting at zero. They are offset by one within
   this function.}
 \seealso{ \code{\link{find.params.pdnn}} }
