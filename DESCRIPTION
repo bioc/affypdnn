@@ -9,4 +9,5 @@ Depends: R (>= 1.9.0), affy (>= 1.5), affydata, hgu95av2probe
 Description: The package contains functions to perform the PDNN method
         described by Li Zhang et al.
 License: LGPL
+biocViews: OneChannel, Microarray, Preprocessing
 
