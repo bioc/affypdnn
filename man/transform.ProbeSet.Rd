@@ -5,10 +5,10 @@
   A function to transform the PMs and MMs in a ProbeSet
 }
 \usage{
-transform.ProbeSet(x, fun = I, ...)
+transform.ProbeSet(`_data`, fun = I, ...)
 }
 \arguments{
-  \item{x}{ object of \code{\link[affy]{ProbeSet-class}} }
+  \item{`_data`}{ object of \code{\link[affy]{ProbeSet-class}} }
   \item{fun}{ a function. The identity function by default. }
   \item{\dots}{ optional arguments for \code{fun}}
 }
