@@ -1,11 +1,11 @@
 Package: affypdnn
-Version: 1.5.1
+Version: 1.5.2
 Title: Probe Dependent Nearest Neighbours (PDNN) for the affy package
 Author: H. Bjorn Nielsen and Laurent Gautier (Many thanks to Li Zhang
         early communications about the existence of the PDNN program
         and related publications).
 Maintainer: Laurent <laurent@cbs.dtu.dk>
-Depends: R (>= 1.9.0), affy (>= 1.5), affydata, hgu95av2probe
+Depends: R (>= 2.3.0), affy (>= 1.5), affydata, hgu95av2probe
 Description: The package contains functions to perform the PDNN method
         described by Li Zhang et al.
 License: LGPL
