@@ -8,7 +8,7 @@
 transform.ProbeSet(`_data`, fun = I, ...)
 }
 \arguments{
-  \item{`_data`}{ object of \code{\link[affy]{ProbeSet-class}} }
+  \item{_data}{ object of \code{\link[affy]{ProbeSet-class}} }
   \item{fun}{ a function. The identity function by default. }
   \item{\dots}{ optional arguments for \code{fun}}
 }
