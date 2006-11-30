@@ -20,7 +20,7 @@ pdnn.params.chiptype(energy.param.file, probes.file = NULL, probes.pack= NULL,
     in the data.frame from \code{probes.pack} or \code{probes.file} for
   the probe sequences, the X positions, the Y positions and the probe
   set ID respectively}
-  \item{verbose}{ verbosity (\code{TRUE} or \code{FALSE} }
+  \item{verbose}{ verbosity (\code{TRUE} or \code{FALSE}) }
 }
 \details{
   The parameters \code{probes.file}, \code{probes.pack} and

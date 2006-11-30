@@ -83,7 +83,7 @@ expressopdnn(abatch,
   An object of \code{\link[Biobase]{exprsSet-class}}, with an attribute
   \code{pps.warnings} as returned by the method \code{\link[affy]{computeExprSet}}.
 }
-\seealso{ \code{\link[affy]{expresso} and \code{\link[affy]{computeExprVal.method.pdnn}}}}
+\seealso{ \code{\link[affy]{expresso}} and \code{\link[affy]{computeExprVal.method.pdnn}}}
 \examples{
 
 ## load pre-computed parameters
