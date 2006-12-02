@@ -68,7 +68,7 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
   
   ## FIXME (automagic to do) ?
   
-  ep <- read.table(energy.param.file, nrows=80, header=TRUE)
+  ep <- read.table(energy.param.file, nrows=80, header=TRUE, as.is=TRUE)
 
   Wg <- as.vector(ep[33:56, 2]) ## weights (specific)
   
@@ -93,7 +93,7 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
                           params.gene = new.env(hash=TRUE))
   
   
-  Eg <- multiassign(as.list(as.character(ep[[1]][1:16])), as.list(as.vector(ep[1:16, 2])), envir=params.chiptype$Eg) ## energy (specific)
+  Eg <- multiassign(as.list(ep[[1]][1:16]), as.list(as.vector(ep[1:16, 2])), envir=params.chiptype$Eg) ## energy (specific)
   
   ##Wg <- multiassign(rownames(ep), as.vector(ep[33:56, 2]), envir=env.list$Wg) ## weights (specific)
   
