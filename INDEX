@@ -1,7 +1,8 @@
+chiptype.pdnn.params    Chip-type specific data
 expressopdnn            Position Dependant Nearest Neighbors model for
                         affy
-find.params.pdnn        A function to find the experiment specific
-                        PDNN parameters
+find.params.pdnn        A function to find the experiment specific PDNN
+                        parameters
 generateExprVal.method.pdnn
                         Compute PM correction and summary expression
                         value

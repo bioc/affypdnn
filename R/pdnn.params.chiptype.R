@@ -10,15 +10,6 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
     stop("Specify one 'probe.file' _or_ one 'probe.pack' _or_ 'probe.data.frame'")
   }
 
-#   if (is.null(cdfName)) {
-#     stop("'cdfName', a name to find the corresponding cdfenv is missing !")
-#   }
-
-#   ## Hack for version 1.2.x of 'affy'
-#   a <- new("AffyBatch", cdfName=cdfName)
-#   cdfenv <- getCdfInfo(a)
-#   rm(a)
-  
   ## FIXME
   if (!is.null(probes.file)) {
     probe.tab <- read.table(probes.file, sep="\t",header=TRUE, nrows=2)##[c(1,2,3,5)]
@@ -68,20 +59,12 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
   
   ## FIXME (automagic to do) ?
   
-  ep <- read.table(energy.param.file, nrows=80, header=TRUE)
+  ep <- read.table(energy.param.file, nrows=80, header=TRUE, as.is=TRUE)
 
   Wg <- as.vector(ep[33:56, 2]) ## weights (specific)
   
   Wn <- as.vector(ep[57:80, 2]) ## weights (non-specific)
 
-#    params.chiptype <- list(Eg = new.env(hash=TRUE),
-#                            Wg = Wg,
-#                            En= new.env(hash=TRUE),
-#                            Wn = Wn,
-#                            Sg = new.env(hash=TRUE),
-#                            Sn = new.env(hash=TRUE),
-#                            gene2i = new.env(hash=TRUE))
-  
   params.chiptype <- list(Eg = new.env(hash=TRUE),
                           Wg = Wg,
                           En= new.env(hash=TRUE),
