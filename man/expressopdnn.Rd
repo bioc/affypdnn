@@ -29,8 +29,7 @@ expressopdnn(abatch,
              eset.normalize = TRUE,
              scale.to = 500,
       # misc.
-             verbose = TRUE,
-             widget = FALSE)
+             verbose = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -57,8 +56,6 @@ expressopdnn(abatch,
     expression summary value is computed for everything on the chip.}
   \item{verbose}{logical value. If \code{TRUE} it writes out some
     messages.}
-  \item{widget}{a boolean to specify the use of widgets (the package
-    tkWidget is required). NOTE: this not yet implemented !}
 }
 \details{
   \code{expressopdnn} is very similar to \code{\link[affy]{expresso}}. It is

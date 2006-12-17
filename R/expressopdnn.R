@@ -16,15 +16,8 @@ expressopdnn <-  function(abatch,
                           ## ---
                           eset.normalize = TRUE,
                           scale.to = 500,
-                          verbose = TRUE,
-                          widget = FALSE
+                          verbose = TRUE
                      ) {
-
-  if (widget) {
-    require(tkWidgets) || stop("library tkWidgets could not be found !")
-    warning("Option 'widget' not yet implemented ! (reverting the option to 'FALSE')")
-    widget <- FALSE
-  }
 
   nchips <- length(abatch)
   
@@ -32,42 +25,18 @@ expressopdnn <-  function(abatch,
   
   ## -- background correction method
   if (bg.correct && is.null(bgcorrect.method)) {
-    if (widget) {
-      bgcorrect.method <- pwidget.selector(bgcorrect.methods,
-                                    title = "Method for background correction")
-                                    ##,choices.help = NULL)
-      #bg.method <- paste("bg.correct", bg.method, sep=".")
-    } else {
-      stop("bg.method missing")
-    }
+    stop("bg.method missing")
   }
 
   ## -- normalize.method
   if ((normalize) & (is.null(normalize.method))) {
-    if (widget) {
-      ##DEBUG: move what's below to 'pwidget.selector'
-      n.methods <- normalize.methods(abatch)
-      normalize.method <- pwidget.selector(n.methods,
-                                           title = "Method for normalization")
-      ##choices.help = paste("normalize", n.methods,  sep="."))##took this out cause netscape popping up was annoying me
-                                                                                
-      rm(n.methods)
-    } else {
-      stop(paste("normalization method missing. Try one of:",
-                 normalize.methods(abatch), sep="\n"))
-    }
+    stop(paste("normalization method missing. Try one of:",
+               normalize.methods(abatch), sep="\n"))
   }
 
-    ## -- pm correction method
+  ## -- pm correction method
   if (is.null(pmcorrect.method)) {
-    if (widget) {
-      pmcorrect.method <- pwidget.selector(c("pdnn", "pdnnpredict"),
-                                    title = "Method for PM correction")
-      ##,choices.help = NULL)
-      #bg.method <- paste("bg.correct", bg.method, sep=".")
-    } else {
-      stop("pmcorrect.method missing")
-    }
+    stop("pmcorrect.method missing")
   } else {
     pmcorrect.method <- match.arg(pmcorrect.method)
   }
