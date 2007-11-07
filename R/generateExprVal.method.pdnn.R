@@ -135,7 +135,7 @@ generateExprVal.method.pdnn <- function(probes, params) {
 
 pdnn.scalevalue.exprSet <- function(eset, scale.to=500) {
   m <- exprs(eset)
-  m.mean <- apply(m, 1, mean, na.rm=TRUE)
+  m.mean <- apply(m, 2, mean, na.rm=TRUE)
   mm <- sweep(m, 2, scale.to/m.mean, "*")
   exprs(eset) <- mm
   return(eset)
