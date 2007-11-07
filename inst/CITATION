@@ -1,0 +1,14 @@
+citEntry(entry = "Article",
+         "author" = "Henrik Bjorn Nielsen and Laurent Gautier and Steen Knudsen",
+         "title" = "Implementation of a gene expression index calculation method based on the PDNN model.",
+         journal = "Bioinformatics",
+         volume = "21",
+         number = "5",
+         year = "2005",
+#         issn = "-",
+         pages = "687--688",
+#         doi = "http://",
+         publisher = "Oxford University Press",
+         address = "Oxford, UK",
+         textVersion = "Nielsen HB, Gautier L, Knudsen S. Implementation of a gene expression index calculation method based on the PDNN model. Bioinformatics. 2005 Mar 1;21(5):687-8. PMID: 15509605"
+) 
