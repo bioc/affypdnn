@@ -1,0 +1,184 @@
+%\VignetteIndexEntry{affypdnn}
+%\VignetteKeywords{Preprocessing, Affymetrix}
+%\VignettePackage{affypdnn}
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+\documentclass[11pt]{article}
+
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat}
+
+\title{The PDNN model for the \Rpackage{affy} package}
+
+\author{Laurent Gautier}
+ 
+\begin{document}
+
+\section{Introduction}
+\maketitle
+
+This package is our implementation of the PDNN model\cite{Zhang_etal}.
+Whenever you use it, you can aknowledge it by quoting our published
+work:
+<<label=citation>>=
+citation(package="affypdnn")
+@ 
+
+This package is also briefly described in Chapter `Preprocessing
+High-density Oligonucleotide Arrays' of the Bioconductor book.
+
+
+The first thing to do is to attach the package 
+to the current R session.
+
+<<label=init, results=hide>>=
+library(affypdnn)
+@ 
+
+Upon executing this command, the package and its
+dependencies will be attached (which will cause few
+lines of text to appear on the console for your R session). 
+
+Throughout this presentation of the package, we will
+use `Dilution' dataset. The reader can replace it
+with an arbitrary instance of class \Rclass{AffyBatch}.
+<<label=afbatch>>=
+data(Dilution)
+afbatch <- Dilution
+@ 
+
+We decomposed the model of Zhang {\it et al.} in such
+a way that it fits the simple framework for probe-level
+data processing implemented in the \Rpackage{affy} package:
+\begin{enumerate}
+\item Chip type-specific parameters are computed
+\item Experiment-specific parameters are computed
+\item Transform the PM probe signal using the PDNN model
+(two flavours: `pdnn' and `pdnnpredict').
+\item Compute probeset-level expression indexes
+\end{enumerate}
+
+
+\section{Chip type-specific parameters}
+
+Chip type-specific parameters for \emph{U95Av2} are included with the package,
+mostly to make some examples shorter to run:
+
+<<label=hgu95av2Params>>=
+data(hgu95av2.pdnn.params)
+@ 
+
+Here we are showing how to compute them.
+
+Currently one needs an external data file, called `energy data file'.
+This file contains parameters for all possible 16 dinucleotides
+($E_g$ and $E_n$), as well as other parameters ($W_g$ and $W_n$).
+
+These files were downloaded, and there is currently no implementation
+to compute these data in this R package.
+The files included within the package are:
+<<label=energyFiles>>=
+dir(system.file("exampleData", package="affypdnn"))
+@ 
+
+The Dilution dataset is of chip-type \emph{HGU95Av2}.
+We read the `energy data file', then compute the parameters
+(note that the probe package is needed):
+<<label=findParamsPDNN>>=
+energy.file <- system.file("exampleData", 
+                           "pdnn-energy-parameter_hg-u95av2.txt", 
+                           package = "affypdnn")
+
+params.chiptype <- pdnn.params.chiptype(energy.file, 
+                                        probes.pack = "hgu95av2probe")
+@ 
+
+
+\section{Experiment-specific parameters}
+
+Parameters specific to an experiement, that is the probe-level values
+in a CEL file, can be computed easily:
+
+<<label=experimentSpecific>>=
+params <- find.params.pdnn(afbatch, hgu95av2.pdnn.params)
+@ 
+
+
+\section{Transform the PM probe-level signal}
+
+Here we arbitrarily pick two probesets:
+<<label=pmLevel>>=
+ppset.name <- c("41206_r_at", "31620_at")
+ppset <- probeset(afbatch, ppset.name)
+@ 
+
+Computing the transformed the PM probe-level signals
+is then just a matter of calling of the functions
+\Rfunction{pmcorrect.pdnnpredict}, 
+\Rfunction{pmcorrect.pdnn}:
+<<label=pmLevelPlot, fig=TRUE>>=
+par(mfrow=c(2,2))
+for (i in 1:2) {
+  probes.pdnn <- pmcorrect.pdnnpredict(ppset[[i]], params,
+                                       params.chiptype = params.chiptype)
+
+  plot(ppset[[i]], main=paste(ppset.name[i], "\n(raw intensities)"))
+  matplotProbesPDNN(probes.pdnn, 
+                    main = paste(ppset.name[i], 
+                      "\n(predicted intensities)"))
+}
+@ 
+
+
+\section{\Rfunction{expressopdnn}}
+Processing probe-level data can be done by using a
+modified\footnote{The design of the function \Rfunction{expresso}
+showed its limitation with the requirements for this one package,
+and a slightly modified version had to be written.} version
+of the function \Rfunction{expresso} in the \Rpackage{affy} package.
+
+Like its \Rpackage{affy} counterpart, \Rfunction{expressopdnn}
+is a simple wrapper around a sequence of preprocessing steps.
+The example below shows a typical usage of it; the documentation page
+can be referred to for an exhaustive
+description of the parameters it accepts.
+
+Here we take only ten probesets:
+<<label=expressopdnn>>=
+ids <- ls(getCdfInfo(afbatch))[1:10]
+eset <- expressopdnn(afbatch, 
+                     bg.correct = FALSE,
+                     normalize = FALSE,
+                     findparams.param = list(params.chiptype = params.chiptype,
+                       give.warnings=FALSE),
+                     summary.subset=ids)
+@ 
+One can note that we leave background correction and normalization aside,
+but it is obviously possible to mix-and-match with any such method available.
+
+\end{document}
