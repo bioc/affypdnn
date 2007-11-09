@@ -39,8 +39,9 @@
  
 \begin{document}
 
-\section{Introduction}
 \maketitle
+
+\section{Introduction}
 
 This package is our implementation of the PDNN model\cite{Zhang_etal}.
 Whenever you use it, you can aknowledge it by quoting our published
@@ -138,9 +139,12 @@ ppset <- probeset(afbatch, ppset.name)
 @ 
 
 Computing the transformed the PM probe-level signals
-is then just a matter of calling of the functions
-\Rfunction{pmcorrect.pdnnpredict}, 
-\Rfunction{pmcorrect.pdnn}:
+is then just a matter of calling one of the functions:
+\begin{itemize}
+  \item \Rfunction{pmcorrect.pdnnpredict}
+  \item \Rfunction{pmcorrect.pdnn}
+\end{itemize}
+
 <<label=pmLevelPlot, fig=TRUE>>=
 par(mfrow=c(2,2))
 for (i in 1:2) {
@@ -158,7 +162,7 @@ for (i in 1:2) {
 \section{\Rfunction{expressopdnn}}
 Processing probe-level data can be done by using a
 modified\footnote{The design of the function \Rfunction{expresso}
-showed its limitation with the requirements for this one package,
+showed its limitations with the requirements for this one package,
 and a slightly modified version had to be written.} version
 of the function \Rfunction{expresso} in the \Rpackage{affy} package.
 
