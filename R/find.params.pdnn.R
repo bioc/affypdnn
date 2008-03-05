@@ -1,7 +1,5 @@
 find.params.pdnn <- function(abatch, params.chiptype=NULL, optim.method="BFGS", verbose=TRUE, give.warnings=TRUE) {
-
-
-    ## chip-type specific parameters
+  ## chip-type specific parameters
   if (is.null(params.chiptype)) {
     ## try to get it from the pack
     namebase <- cleancdfname(abatch@cdfName) 
@@ -11,14 +9,14 @@ find.params.pdnn <- function(abatch, params.chiptype=NULL, optim.method="BFGS", 
     do.call("data", list(dataname, package="affypdnn"))
     assign("params.chiptype", get(dataname))
   }
-    if (verbose)
+  if (verbose)
     cat("initializing data structure...")
 
   ## the following is a bit hard to follow (at least for the author of the
   ## code 8 months later ;) )... comments were added...
 
   ## names of probe sets (sorted)
-  names.abatch <- sort(geneNames(abatch))
+  names.abatch <- sort(featureNames(abatch))
   ## number of probes in probes sets (set to zero at start)
   n.probes <- rep(0, length(names.abatch))
   ## number of CEL files in the abatch
@@ -214,8 +212,6 @@ find.params.pdnn <- function(abatch, params.chiptype=NULL, optim.method="BFGS", 
     Fs[cel.i] <- fit.f(c(Bs[cel.i], Ns[cel.i]), Gij.forfit, Hij.forfit, Kij.forfit)
     
   }
-
-
   
   return(list(lambda=lambda, Bs=Bs, Ns=Ns, Fs=Fs, names.abatch=names.abatch, names.i=names.i))
 }

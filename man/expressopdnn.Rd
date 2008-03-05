@@ -2,10 +2,9 @@
 \alias{affypdnn}
 \alias{expressopdnn}
 \alias{pdnn.scalevalue.exprSet}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Position Dependant Nearest Neighbors model for affy}
 \description{
-  a wrapper to perform the PDNN method.
+  A wrapper to perform the PDNN method.
 }
 \usage{
 pdnn.scalevalue.exprSet(eset, scale.to=500)
@@ -31,28 +30,27 @@ expressopdnn(abatch,
       # misc.
              verbose = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{abatch}{object of \code{\link[affy]{AffyBatch-class}}}
+  \item{abatch}{object of \code{\link[affy]{AffyBatch-class}}.}
   \item{bg.correct}{a boolean to express whether background correction
     is wanted or not.}
-  \item{bgcorrect.method}{the name of the background adjustment method}
+  \item{bgcorrect.method}{the name of the background adjustment method.}
   \item{bgcorrect.param}{a list of parameters for bgcorrect.method (if
-    needed/wanted)}
-  \item{eset}{An object of \code{\link[Biobase]{exprSet-class}}}
-  \item{normalize}{ normalization step wished or not.}
-  \item{normalize.method}{the normalization method to use}
+    needed/wanted).}
+  \item{eset}{an object of \code{\link[Biobase]{ExpressionSet-class}}.}
+  \item{normalize}{normalization step wished or not.}
+  \item{normalize.method}{the normalization method to use.}
   \item{normalize.param}{a list of parameters to be passed to the
     normalization method (if wanted).}
    \item{pmcorrect.method}{the name of the PM adjustement method (only
      two choices here, default to 'pdnn').}
 %   \item{pmcorrect.param}{a list of parameters for pmcorrect.method (if
 %     needed/wanted)}
-  \item{findparams.param}{a list of parameters to be passed to \code{find.params.pdnn}}
+  \item{findparams.param}{a list of parameters to be passed to \code{find.params.pdnn}.}
   \item{eset.normalize}{is any normalization step on expression values
-    to be performed}
+    to be performed.}
   \item{scale.to}{a value to scale against.}
-  \item{summary.subset}{a list of 'affyids'. If \code{NULL}, a
+  \item{summary.subset}{a list of 'affyids'. If \code{NULL}, then an
     expression summary value is computed for everything on the chip.}
   \item{verbose}{logical value. If \code{TRUE} it writes out some
     messages.}
@@ -77,18 +75,16 @@ expressopdnn(abatch,
   to \code{FALSE}).
 }
 \value{
-  An object of \code{\link[Biobase]{exprsSet-class}}, with an attribute
+  An object of \code{\link[Biobase]{ExpressionSet-class}}, with an attribute
   \code{pps.warnings} as returned by the method \code{\link[affy]{computeExprSet}}.
 }
-\seealso{ \code{\link[affy]{expresso}} and \code{\link[affy]{computeExprVal.method.pdnn}}}
+\seealso{\code{\link[affy]{expresso}} and \code{\link[affy]{computeExprVal.method.pdnn}}}
 \examples{
-
 ## load pre-computed parameters
 data(hgu95av2.pdnn.params)
 
 library(affydata)
 data(Dilution)
-
 
 ## one CEL to go faster
 afbatch <- Dilution[, 1]
@@ -99,8 +95,6 @@ eset <- expressopdnn(afbatch, bg.correct=FALSE,
                      normalize=FALSE,
                      findparams.param=list(params.chiptype=hgu95av2.pdnn.params,
                                            give.warnings=FALSE),
-                     summary.subset=ids) 
-
+                     summary.subset=ids)
 }
 \keyword{manip}
-
