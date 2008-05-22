@@ -110,14 +110,15 @@ dir(system.file("exampleData", package="affypdnn"))
 The Dilution dataset is of chip-type \emph{HGU95Av2}.
 We read the `energy data file', then compute the parameters
 (note that the probe package is needed):
-<<label=findParamsPDNN>>=
+
+\begin{Scode}
 energy.file <- system.file("exampleData", 
                            "pdnn-energy-parameter_hg-u95av2.txt", 
                            package = "affypdnn")
 
 params.chiptype <- pdnn.params.chiptype(energy.file, 
                                         probes.pack = "hgu95av2probe")
-@ 
+\end{Scode}
 
 
 \section{Experiment-specific parameters}
@@ -126,8 +127,14 @@ Parameters specific to an experiement, that is the probe-level values
 in a CEL file, can be computed easily:
 
 <<label=experimentSpecific>>=
-params <- find.params.pdnn(afbatch, hgu95av2.pdnn.params)
+data("params.dilution", package="affypdnn")
+params <- params.dilution
+rm(params.dilution)
 @ 
+
+\begin{Scode}
+params <- find.params.pdnn(afbatch, hgu95av2.pdnn.params)
+\end{Scode}
 
 
 \section{Transform the PM probe-level signal}
