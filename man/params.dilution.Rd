@@ -3,7 +3,7 @@
 \docType{data}
 \title{ Parameters for the Dilution dataset}
 \description{
-  PDNN parameters for the Dilution dataset}
+  PDNN parameters for the Dilution dataset
 }
 \usage{data(params.dilution)}
 \format{
