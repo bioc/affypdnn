@@ -92,6 +92,8 @@ mostly to make some examples shorter to run:
 
 <<label=hgu95av2Params>>=
 data(hgu95av2.pdnn.params)
+
+params.chiptype <- hgu95av2.pdnn.params
 @ 
 
 Here we are showing how to compute them.
@@ -121,12 +123,13 @@ params.chiptype <- pdnn.params.chiptype(energy.file,
 \end{Scode}
 
 
+
 \section{Experiment-specific parameters}
 
 Parameters specific to an experiement, that is the probe-level values
 in a CEL file, can be computed easily:
 
-<<label=experimentSpecific>>=
+<<label=experimentSpecific, echo=FALSE>>=
 data("params.dilution", package="affypdnn")
 params <- params.dilution
 rm(params.dilution)

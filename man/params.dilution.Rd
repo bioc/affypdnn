@@ -1,7 +1,7 @@
 \name{params.dilution}
 \alias{params.dilution}
 \docType{data}
-\title{ Parameters for the Dilution dataset}
+\title{ Parameters for the Dilution dataset }
 \description{
   PDNN parameters for the Dilution dataset
 }
@@ -13,7 +13,7 @@ List of 6
  $ Bs          : num [1:4] 111.9  57.3 120.5  50.1
  $ Ns          : num [1:4] 2967 2998 2992 2999
  $ Fs          : num [1:4] 0.607 0.662 0.600 0.656
- $ names.abatch: chr [1:12625] "1000\\_at" "1001\\_at" "1002\\_f\\_at" "1003\\_s\\_at" ...
+ $ names.abatch: chr [1:12625] "1000\\_at" "1001\\_at" "1002\\_f\\_at" ...
  $ names.i     : int [1:12625] 1 2 3 4 5 6 7 8 9 10 ...
 }
 \details{
