@@ -98,7 +98,9 @@ expressopdnn <-  function(abatch,
   eset <- computeExprSet(abatch, pmcorrect.method=pmcorrect.method,
                          summary.method="pdnn",
                          ids=summary.subset,
-                         pmcorrect.param = list(params, params.chiptype=params.chiptype, callingFromExpresso=TRUE),
+                         pmcorrect.param = list(params,
+                           params.chiptype=params.chiptype,
+                           callingFromExpresso=TRUE),
                          summary.param = list(params))
 
   if (eset.normalize)

@@ -69,6 +69,7 @@ Throughout this presentation of the package, we will
 use `Dilution' dataset. The reader can replace it
 with an arbitrary instance of class \Rclass{AffyBatch}.
 <<label=afbatch>>=
+library(affydata)
 data(Dilution)
 afbatch <- Dilution
 @ 
