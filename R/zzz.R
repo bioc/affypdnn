@@ -5,9 +5,8 @@
   ## register the new summary method
   where <- match(paste("package:", pkgname, sep=""), search())
   cat("registering new summary method 'pdnn'.\n")
-  assign("express.summary.stat.methods", c(express.summary.stat.methods, "pdnn"), envir=as.environment("package:affy"))
+  upDate.express.summary.stat.methods(c(affy::express.summary.stat.methods(), 
+        "pdnn"))
   cat("registering new pmcorrect method 'pdnn' and 'pdnnpredict'.\n")
-  assign("pmcorrect.methods", c(pmcorrect.methods, "pdnn", "pdnnpredict"), envir=as.environment("package:affy"))
-  ##assign("express.summary.stat.methods", c(express.summary.stat.methods, "pdnn"), envir=where)
-  
+  upDate.pmcorrect.methods(c(affy::pmcorrect.methods(), "pdnn", "pdnnpredict"))
 }
