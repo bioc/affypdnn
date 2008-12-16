@@ -59,7 +59,7 @@ expressopdnn <-  function(abatch,
     if (verbose)
       cat("background correcting...")
     
-    abatch <- do.call("bg.correct", c(alist(abatch, method=bgcorrect.method),
+    abatch <- do.call(bg.correct, c(alist(abatch, method=bgcorrect.method),
                                        bgcorrect.param))
     
     if (verbose)
@@ -73,7 +73,7 @@ expressopdnn <-  function(abatch,
     if (verbose)
       cat("normalizing...")
     
-    abatch <- do.call("normalize",
+    abatch <- do.call(normalize,
                       c(alist(abatch, normalize.method), normalize.param))
     
     if (verbose)
@@ -86,13 +86,13 @@ expressopdnn <-  function(abatch,
     ## try to get it from the pack
     namebase <- cleancdfname(abatch@cdfName) 
     dataname <- paste(substr(namebase, 1,  nchar(namebase) - 3), ".pdnn.params", sep="")
-    if(! dataname %in% do.call("data", list(package="affypdnn"))$results[, 3])
+    if(! dataname %in% do.call(data, list(package="affypdnn"))$results[, 3])
       stop("params.chiptype missing !")
-    do.call("data", list(dataname, package="affypdnn"))
+    do.call(data, list(dataname, package="affypdnn"))
     assign("params.chiptype", get(dataname))
   }
   findparams.param$params.chiptype <- params.chiptype
-  params <- do.call("find.params.pdnn",
+  params <- do.call(find.params.pdnn,
                     c(alist(abatch), findparams.param))
   
   eset <- computeExprSet(abatch, pmcorrect.method=pmcorrect.method,

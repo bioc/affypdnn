@@ -4,9 +4,9 @@ find.params.pdnn <- function(abatch, params.chiptype=NULL, optim.method="BFGS", 
     ## try to get it from the pack
     namebase <- cleancdfname(abatch@cdfName) 
     dataname <- paste(substr(namebase, 1,  nchar(namebase) - 3), ".pdnn.params", sep="")
-    if(! dataname %in% do.call("data", list(package="affypdnn"))$results[, 3])
+    if(! dataname %in% do.call(data, list(package="affypdnn"))$results[, 3])
       stop("params.chiptype missing !")
-    do.call("data", list(dataname, package="affypdnn"))
+    do.call(data, list(dataname, package="affypdnn"))
     assign("params.chiptype", get(dataname))
   }
   if (verbose)

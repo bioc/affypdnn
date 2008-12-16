@@ -25,7 +25,7 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
   }
   
   if (!is.null(probes.pack)) {
-    do.call("library", list(probes.pack))
+    do.call(library, list(probes.pack))
     probe.tab <- get(probes.pack, envir=as.environment(paste("package:", probes.pack, sep="")))
   }
 
