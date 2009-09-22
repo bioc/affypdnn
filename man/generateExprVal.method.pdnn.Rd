@@ -14,7 +14,7 @@ pmcorrect.pdnnpredict(object, params, gene=NULL, gene.i=NULL,
 generateExprVal.method.pdnn(probes, params)
 }
 \arguments{
-  \item{object}{object of \code{\link[affy]{ProbeSet}}.}
+  \item{object}{object of \code{\link[affy:ProbeSet-class]{ProbeSet}}.}
   \item{probes}{matrix of PM-corrected signals (should be coming out of
   \code{pmcorrect.pdnn}).}
   \item{params}{experiments specific parameters.}

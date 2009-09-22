@@ -11,7 +11,7 @@ find.params.pdnn(abatch, params.chiptype, optim.method = "BFGS", verbose = TRUE,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{abatch}{ an instance of \code{\link[affy]{Affybatch-class}}. }
+  \item{abatch}{ an instance of \code{\link[affy]{AffyBatch-class}}. }
   \item{params.chiptype}{ chip-type specific parameters (see details)}
   \item{optim.method}{method for the optimization function
     \code{\link{optim}}. When \code{FALSE}, a steepest-descent method of our own

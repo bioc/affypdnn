@@ -37,7 +37,8 @@ expressopdnn(abatch,
   \item{bgcorrect.method}{the name of the background adjustment method.}
   \item{bgcorrect.param}{a list of parameters for bgcorrect.method (if
     needed/wanted).}
-  \item{eset}{an object of \code{\link[Biobase]{ExpressionSet-class}}.}
+  \item{eset}{an object of
+    \code{\link[Biobase:class.ExpressionSet]{ExpressionSet-class}}.} 
   \item{normalize}{normalization step wished or not.}
   \item{normalize.method}{the normalization method to use.}
   \item{normalize.param}{a list of parameters to be passed to the
@@ -46,7 +47,8 @@ expressopdnn(abatch,
      two choices here, default to 'pdnn').}
 %   \item{pmcorrect.param}{a list of parameters for pmcorrect.method (if
 %     needed/wanted)}
-  \item{findparams.param}{a list of parameters to be passed to \code{find.params.pdnn}.}
+  \item{findparams.param}{a list of parameters to be passed to
+    \code{find.params.pdnn}.} 
   \item{eset.normalize}{is any normalization step on expression values
     to be performed.}
   \item{scale.to}{a value to scale against.}
@@ -75,10 +77,14 @@ expressopdnn(abatch,
   to \code{FALSE}).
 }
 \value{
-  An object of \code{\link[Biobase]{ExpressionSet-class}}, with an attribute
-  \code{pps.warnings} as returned by the method \code{\link[affy]{computeExprSet}}.
+  An object of
+  \code{\link[Biobase:class.ExpressionSet]{ExpressionSet-class}}, with
+  an attribute 
+  \code{pps.warnings} as returned by the method
+  \code{\link[affy:generateExprSet-methods]{computeExprSet}}. 
 }
-\seealso{\code{\link[affy]{expresso}} and \code{\link[affy]{computeExprVal.method.pdnn}}}
+\seealso{\code{\link[affy]{expresso}} and
+  \code{\link{generateExprVal.method.pdnn}}} 
 \examples{
 ## load pre-computed parameters
 data(hgu95av2.pdnn.params)
