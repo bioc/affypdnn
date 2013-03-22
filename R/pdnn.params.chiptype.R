@@ -121,8 +121,8 @@ pdnn.params.chiptype <- function(energy.param.file, probes.file = NULL, probes.p
       for (k in seq(1, nchar(oligo[g])-1)) {
 
         ## FIXME: build hashtables for Eg and En
-        ##di.nucl <- substr(oligo[g], k, k+1)
-        di.nucl <- .Internal(substr(oligo[g], k, k+increment))
+        di.nucl <- substr(oligo[g], k, k+1)
+        ##di.nucl <- .Internal(substr(oligo[g], k, k+increment))
         ## FIXME cast necessary ?
         ##EG <- as.numeric(EG + Wg[k] * get(di.nucl, envir = Eg))
         ##EN <- as.numeric(EN + Wn[k] * get(di.nucl, envir = En))
