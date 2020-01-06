@@ -1,5 +1,5 @@
 Package: affypdnn
-Version: 1.61.0
+Version: 1.61.1
 Date: 2009-09-22
 Title: Probe Dependent Nearest Neighbours (PDNN) for the affy package
 Author: H. Bjorn Nielsen and Laurent Gautier (Many thanks to Li Zhang
@@ -12,4 +12,4 @@ Description: The package contains functions to perform the PDNN method
         described by Li Zhang et al.
 License: LGPL
 biocViews: OneChannel, Microarray, Preprocessing
-
+PackageStatus: Deprecated
